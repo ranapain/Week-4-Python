@@ -1,0 +1,19 @@
+def get_count(head):
+    cnt = 0
+    while head:
+        cnt += 1
+        head = head.next
+    return cnt
+
+def get_intersection(h1, h2):
+    c1, c2 = get_count(h1), get_count(h2)
+    d = abs(c1 - c2)
+    big, small = (h1, h2) if c1 > c2 else (h2, h1)
+
+    for _ in range(d):
+        big = big.next
+    while big and small:
+        if big == small:
+            return big.data
+        big, small = big.next, small.next
+    return None
