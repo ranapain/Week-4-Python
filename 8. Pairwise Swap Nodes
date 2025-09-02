@@ -1,0 +1,6 @@
+def pairwise_swap(head):
+    temp = head
+    while temp and temp.next:
+        temp.data, temp.next.data = temp.next.data, temp.data
+        temp = temp.next.next
+    return head
