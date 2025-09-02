@@ -1,0 +1,22 @@
+class MNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.child = None
+
+def merge(a, b):
+    if not a: return b
+    if not b: return a
+    if a.data < b.data:
+        a.child = merge(a.child, b)
+        return a
+    else:
+        b.child = merge(a, b.child)
+        return b
+
+def flatten(head):
+    if not head or not head.next:
+        return head
+    head.next = flatten(head.next)
+    head = merge(head, head.next)
+    return head
